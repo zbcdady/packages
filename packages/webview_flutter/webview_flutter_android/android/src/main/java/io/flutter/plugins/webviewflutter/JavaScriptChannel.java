@@ -40,9 +40,9 @@ public class JavaScriptChannel {
   // Suppressing unused warning as this is invoked from JavaScript.
   @SuppressWarnings("unused")
   @JavascriptInterface
-  public void postMessage(@NonNull final String message) {
+  public void postMessage(@NonNull final String message, @NonNull final String data) {
     final Runnable postMessageRunnable =
-        () -> flutterApi.postMessage(JavaScriptChannel.this, message, reply -> {});
+        () -> flutterApi.postMessage(JavaScriptChannel.this, message, data, reply -> {});
 
     if (platformThreadHandler.getLooper() == Looper.myLooper()) {
       postMessageRunnable.run();
